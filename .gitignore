@@ -1,0 +1,18 @@
+﻿# Build outputs
+/build/
+/cmake-build-debug/
+/CMakeFiles/
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.dll
+*.lib
+*.exp
+*.o
+*.a
+*.log
+
+# IDE
+/.idea/
+*.user

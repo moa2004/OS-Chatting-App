@@ -447,8 +447,6 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
     }
     return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
-
-// Launches the socket chat UI. Called from the unified launcher.
 int RunSocketChat(_In_ HINSTANCE hInstance, _In_ int nCmdShow, _In_opt_ LPWSTR cmdLine) {
     INITCOMMONCONTROLSEX icc{sizeof(icc), ICC_WIN95_CLASSES};
     InitCommonControlsEx(&icc);
@@ -466,7 +464,7 @@ int RunSocketChat(_In_ HINSTANCE hInstance, _In_ int nCmdShow, _In_opt_ LPWSTR c
     RegisterClassW(&wc);
 
     HWND hwnd = CreateWindowExW(
-        0, // no layered flag to ensure visibility on all systems
+        0,
         wc.lpszClassName,
         L"Socket Chat (Winsock)",
         WS_OVERLAPPEDWINDOW | WS_VISIBLE,

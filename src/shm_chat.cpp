@@ -79,7 +79,7 @@ static void CloseHandles(AppState* app) {
 
 static void StopChat(AppState* app) {
     app->running = false;
-    if (app->semIn) ReleaseSemaphore(app->semIn, 1, nullptr); // unblock wait
+    if (app->semIn) ReleaseSemaphore(app->semIn, 1, nullptr);
     if (app->recvThread.joinable()) app->recvThread.join();
     CloseHandles(app);
     PostStatus(app->hwnd, L"Shared Memory Chat - Offline");
@@ -113,7 +113,7 @@ static void StartChat(AppState* app) {
     }
     app->peer = CurrentPeer(app);
     std::wstring channel = GetChannel(app);
-    std::wstring base = L"Local\\ShmChat_" + channel; // Local namespace avoids admin requirements
+    std::wstring base = L"Local\\ShmChat_" + channel;
     std::wstring mapName = base + L"_map";
     std::wstring semAtoB = base + L"_AtoB";
     std::wstring semBtoA = base + L"_BtoA";
@@ -373,8 +373,6 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
     }
     return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
-
-// Launches the shared-memory chat UI. Called from the unified launcher.
 int RunShmChat(_In_ HINSTANCE hInstance, _In_ int nCmdShow, _In_opt_ LPWSTR cmdLine) {
     INITCOMMONCONTROLSEX icc{sizeof(icc), ICC_WIN95_CLASSES};
     InitCommonControlsEx(&icc);
@@ -392,7 +390,7 @@ int RunShmChat(_In_ HINSTANCE hInstance, _In_ int nCmdShow, _In_opt_ LPWSTR cmdL
     RegisterClassW(&wc);
 
     HWND hwnd = CreateWindowExW(
-        0, // remove layered to avoid invisible window on some setups
+        0,
         wc.lpszClassName,
         L"Shared Memory Chat",
         WS_OVERLAPPEDWINDOW | WS_VISIBLE,

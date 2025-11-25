@@ -267,7 +267,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR,
     RegisterClassW(&wc);
 
     HWND hwnd = CreateWindowExW(
-        0, // no layered/composited flags to avoid hidden/blank window issues
+        0,
         wc.lpszClassName,
         L"OS Chat Studio",
         WS_OVERLAPPEDWINDOW | WS_VISIBLE,

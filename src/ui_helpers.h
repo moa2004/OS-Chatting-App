@@ -7,14 +7,13 @@
 #include <strsafe.h>
 #include <cstdarg>
 
-// Lightweight UI helpers for the two chat apps.
 struct UiTheme {
-    COLORREF base = RGB(12, 18, 38);         // deep navy background
-    COLORREF card = RGB(22, 30, 52);         // card background
-    COLORREF accent = RGB(0, 194, 255);      // neon cyan
-    COLORREF accent2 = RGB(16, 185, 129);    // emerald
-    COLORREF text = RGB(228, 238, 255);      // light text
-    COLORREF muted = RGB(140, 159, 193);     // muted text
+    COLORREF base = RGB(12, 18, 38);        
+    COLORREF card = RGB(22, 30, 52);         
+    COLORREF accent = RGB(0, 194, 255);      
+    COLORREF accent2 = RGB(16, 185, 129);    
+    COLORREF text = RGB(228, 238, 255);      
+    COLORREF muted = RGB(140, 159, 193);     
     HBRUSH baseBrush = CreateSolidBrush(base);
     HBRUSH cardBrush = CreateSolidBrush(card);
 };
@@ -36,14 +35,12 @@ inline std::wstring GetWindowTextWstr(HWND hwnd) {
 }
 
 inline void AppendText(HWND edit, const std::wstring& text) {
-    // Append without destroying selection.
     int end = GetWindowTextLengthW(edit);
     SendMessageW(edit, EM_SETSEL, (WPARAM)end, (LPARAM)end);
     SendMessageW(edit, EM_REPLACESEL, FALSE, (LPARAM)text.c_str());
 }
 
 inline void PaintGradientHeader(HDC hdc, const RECT& area, const UiTheme& theme) {
-    // Draw a vertical gradient header bar with a neon edge.
     TRIVERTEX vert[2];
     vert[0].x = area.left;
     vert[0].y = area.top;

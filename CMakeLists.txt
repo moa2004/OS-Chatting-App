@@ -9,7 +9,6 @@ add_definitions(-DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0601 -DWIN32_LEAN_AND_MEAN
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-# Unified launcher with runtime selection between socket and shared-memory chats.
 add_executable(chat_app
     src/app_main.cpp
     src/socket_chat.cpp
@@ -25,9 +24,6 @@ target_link_libraries(chat_app
     user32
     gdi32
 )
-
-# Link statically to libstdc++/libgcc when using MinGW so the exe runs on machines
-# without those DLLs installed. MSVC builds ignore these flags.
 if (MINGW)
     target_link_options(chat_app PRIVATE
         -mwindows
